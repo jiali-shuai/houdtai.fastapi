@@ -21,7 +21,7 @@ DATABASE_CONFIG = {
                 "host": "127.0.0.1",
                 "port": 3306,
                 "user": "root",
-                "password": "lxj2004728",
+                "password": "your_password",
                 "database": "uer",
             }
         }
