@@ -1,8 +1,6 @@
-from fastapi import APIRouter, Depends, Query, HTTPException, Request
-from datetime import datetime
-from pydantic import BaseModel
+from fastapi import APIRouter,Request
 from tortoise.expressions import Q
-from typing import Optional, List
+from typing import Optional
 import hashlib
 
 import sys
@@ -13,14 +11,6 @@ from core.jwt import verify_and_get_token_data
 
 
 router = APIRouter()
-
-class UserResponse(BaseModel):
-    id: int
-    username: str
-    phone: Optional[str]
-    avatar: Optional[str]
-    status: int
-    create_time: datetime
 
 @router.get("/admin/user/{page}")
 async def get_user_list(

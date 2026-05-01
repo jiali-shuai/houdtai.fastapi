@@ -1,11 +1,11 @@
-from fastapi import APIRouter, Depends, Query, HTTPException, Request, UploadFile, File
-from datetime import datetime
-from pydantic import BaseModel
-from tortoise.expressions import Q
-from typing import Optional, List
+from fastapi import APIRouter,Request, UploadFile, File
 import os
 import sys
 from pathlib import Path
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
 
 sys.path.append(str(Path(__file__).parent.parent))
 from models.models import Image
@@ -13,12 +13,7 @@ from core.jwt import verify_and_get_token_data
 
 router = APIRouter()
 
-class ImageResponse(BaseModel):
-    id: int
-    name: str
-    url: str
-    image_class_id: int
-    create_time: datetime
+
 @router.get("/admin/image_class/{id}/image/{page}")
 async def get_image_list(
     request: Request,
@@ -162,7 +157,7 @@ async def upload_image(
             buffer.write(await img.read())
         
         # 生成完整URL
-        image_url = f"http://8.218.255.181/{file_path}"
+        image_url = f"{os.getenv('SERVER_URL')}/{file_path}"
         
         # 保存到数据库
         image = await Image.create(

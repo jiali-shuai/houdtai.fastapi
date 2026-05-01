@@ -1,30 +1,17 @@
-from fastapi import APIRouter, Depends, Query, HTTPException, Request
+from fastapi import APIRouter,Request
 from datetime import datetime
-from pydantic import BaseModel
 from tortoise.expressions import Q
-from typing import Optional, List
+from typing import Optional
 
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
-from models.models import Order, OrderItem, User,Address
+from models.models import Order
 from core.jwt import verify_and_get_token_data
 
 router = APIRouter()
 
-class OrderResponse(BaseModel):
-    id: int
-    no: str
-    user_id: int
-    total_price: float
-    payment_method: str
-    paid_time: Optional[datetime]
-    create_time: datetime
-    status: str
-    refund_status: Optional[str]
-    ship_data: Optional[dict]
-    address: Optional[dict]
-    order_items: List[dict]
+
 
 @router.get("/admin/order/{page}")
 async def get_order_list(

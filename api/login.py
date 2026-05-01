@@ -1,14 +1,11 @@
-from fastapi import APIRouter, Depends, Request
-from datetime import datetime, timedelta
-from pydantic import BaseModel
-from tortoise.exceptions import DoesNotExist, IntegrityError
-from typing import Optional, Union
+from fastapi import APIRouter, Request
+from tortoise.exceptions import DoesNotExist
 
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 from core.jwt import create_access_token, verify_and_get_token_data
-from models.models import Admin,Goods
+from models.models import Admin
 
 router = APIRouter()
 
@@ -440,11 +437,7 @@ async def getinfo(request: Request):
                 }
         
     except DoesNotExist:
-        return {
-            "msg": "error",
-            "data": None
-        }
-        
+
         return {
             "resultCode": 400,
             "message": "管理员不存在",

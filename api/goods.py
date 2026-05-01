@@ -1,8 +1,6 @@
-from fastapi import APIRouter, Depends, Query, HTTPException, Request
-from datetime import datetime
-from pydantic import BaseModel
+from fastapi import APIRouter,Query,Request
 from tortoise.expressions import Q
-from typing import Optional,List
+from typing import Optional
 
 import sys
 from pathlib import Path
@@ -12,16 +10,7 @@ from core.jwt import verify_and_get_token_data
 
 router = APIRouter()
 
-class GoodsResponse(BaseModel):
-    id: int  # 改为前端使用的字段名
-    title: str  # 改为goodsName的映射
-    cover: str  # 改为goodsCoverImg的映射
-    min_price: float  # 改为sellingPrice的映射
-    ISBN: Optional[str]
-    author: Optional[str]
-    press: Optional[str]
-    stock: Optional[int]
-    create_time: datetime # 新增销量字段，默认0
+
 
 @router.get("/admin/goods/{page}")
 async def get_goods_list(
