@@ -41,3 +41,9 @@
 4. 访问接口文档：
     - Swagger UI: http://127.0.0.1:1080/docs
     - ReDoc: http://127.0.0.1:1080/redoc
+
+5. 整个项目链接：
+   - 用户端前端: https://github.com/jiali-shuai/web.vue3.git
+   - 用户端后端: https://github.com/jiali-shuai/web.fastapi.git
+   - 管理员端前端: https://github.com/jiali-shuai/houtai.vue3.git
+   - 管理员端后端: https://github.com/jiali-shuai/houdtai.fastapi.git
